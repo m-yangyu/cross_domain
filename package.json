@@ -1,0 +1,16 @@
+{
+  "name": "eletron-demo",
+  "version": "1.0.0",
+  "description": "eletron-demo",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "mqx",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "electron-packager": "^13.1.1",
+    "express": "^4.17.1"
+  }
+}
