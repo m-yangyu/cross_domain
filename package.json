@@ -4,7 +4,8 @@
   "description": "eletron-demo",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "all-build": "electron-packager ./ eletron-demo --all --out ./OutApp  --electron-version 5.0.2 --overwrite --icon=./icon.png"
   },
   "author": "mqx",
   "license": "ISC",
