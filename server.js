@@ -1,9 +1,14 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const fs = require('fs');
 
 const app = new express();
-app.use(express.static( '/Users/maqixiang/Desktop/code/elecron/public' ));
+
+const fileData = fs.readFileSync( path.resolve(__dirname,'../../../../config.json'))
+const fileName = JSON.parse(fileData.toString()).publicPath;
+
+app.use(express.static( fileName ));
 
 const body_request={
 
@@ -42,14 +47,11 @@ app.post('/set_config',(req,res)=>{
 
 app.all('/*',(req,res)=>{
 
-    console.log(req.url);
     const request = {
         path:req.url,
         method: req.method,
         ...body_request,
     }
-    console.log( request );
-    res.send('hello');
     const r = http.request(request,(httpRes)=>{
 
         let content='';
