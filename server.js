@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const app = new express();
 
-const fileData = fs.readFileSync( path.resolve(__dirname,'../../../../config.json'))
+const fileData = fs.readFileSync( path.resolve(__dirname,'../../config.json'))
 const fileName = JSON.parse(fileData.toString()).publicPath;
 
 app.use(express.static( fileName ));
