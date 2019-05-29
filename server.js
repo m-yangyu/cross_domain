@@ -4,7 +4,6 @@ const http = require('http');
 
 const app = new express();
 app.use(express.static( '/Users/maqixiang/Desktop/code/elecron/public' ));
-console.log( path.resolve(__dirname , './public') );
 
 const body_request={
 
@@ -17,15 +16,8 @@ const body_request={
 
 };
 
-app.get('/',function(req,res){
-    console.log(req.url , '11122');
-    res.send('hello world');
-})
-
-app.use('*',(req,res,next)=>{
-
+app.use((req,res,next)=>{
     let params = '';
-
     req.on('data',(chunk)=>{
         params += chunk;
         req.body = params;
@@ -34,15 +26,30 @@ app.use('*',(req,res,next)=>{
     req.on('end',()=>{
         next();
     })
+})
 
-},(req,res)=>{
+app.post('/set_config',(req,res)=>{
+    const param = JSON.parse(req.body);
 
+    console.log(param);
+
+    body_request.hostname = param.hostname;
+    body_request.port = param.port;
+    body_request.headers.Cookie = param.cookie;
+
+    res.send('hello world');
+})
+
+app.all('/*',(req,res)=>{
+
+    console.log(req.url);
     const request = {
         path:req.url,
         method: req.method,
         ...body_request,
     }
-    
+    console.log( request );
+    res.send('hello');
     const r = http.request(request,(httpRes)=>{
 
         let content='';
@@ -57,12 +64,6 @@ app.use('*',(req,res,next)=>{
         })
 
     });
-
-    r.on('error',(data)=>{
-
-        console.log(data);
-
-    })
 
     if( req.method !== 'GET' ){
 
