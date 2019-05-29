@@ -5,8 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "run-electron .",
-    "mac-build": "electron-packager ./ eletron-demo --platform=darwin --ignore=config.json --no-prune",
-    "win-build": "electron-packager ./ eletron-demo --platform=win32 --ignore=config.json --no-prune"
+    "mac-build": "electron-packager ./ eletron-demo --platform=darwin --ignore=config.json --no-prune"
   },
   "author": "mqx",
   "license": "ISC",
