@@ -10,7 +10,7 @@ const fileName = readFile.readConfig().publicPath;
 const proxy = httpProxy.createProxyServer();
 const body_request={
 
-    hostname:'192.168.149.99',
+    hostname:'',
     port:8081,
     Cookie: '',
 
