@@ -4,14 +4,19 @@
   "description": "eletron-demo",
   "main": "main.js",
   "scripts": {
-    "start": "run-electron .",
-    "mac-build": "electron-packager ./ eletron-demo --platform=darwin --ignore=config.json --no-prune",
-    "win-build": "electron-packager ./ eletron-demo --platform=win32 --ignore=config.json --no-prune"
+    "start": "set NODE_ENV=local&& run-electron ./",
+    "test":"set NODE_ENV=darwin&& node ./node/setEnv.js",
+    "win-build":"cd app && npm run build && cd .. && npm run win-electron-build",
+    "mac-build":"cd app && npm run build && cd .. && npm run mac-electron-build",
+    "win-electron-build": "set NODE_ENV=win32&& node ./node/setEnv.js && electron-packager ./ eletron-demo --platform=win32 --ignore=config.json --no-prune --overwrite",
+    "mac-electron-build": "export NODE_ENV=darwin&& node ./node/setEnv.js && electron-packager ./ eletron-demo --platform=darwin --ignore=config.json --no-prune --overwrite"
   },
   "author": "mqx",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "electron-packager": "^13.1.1",
+    "http-proxy": "^1.17.0",
     "run-electron": "^1.0.0"
   },
   "dependencies": {

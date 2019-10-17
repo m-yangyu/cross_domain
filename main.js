@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron');
-require('./server.js');
+const { app, BrowserWindow , Menu } = require('electron');
+const { menuContext } = require('./electron/Menu');
+require('./node/server.js');
 
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
 // 垃圾回收的时候，window对象将会自动的关闭
@@ -15,8 +16,11 @@ function createWindow () {
     }
   })
 
+  // const menu = Menu.buildFromTemplate(menuContext.menu);
+  // Menu.setApplicationMenu(menu);
+
   // 加载index.html文件
-  win.loadFile('index.html')
+  win.loadFile('./app/dist/index.html')
 
   // 打开开发者工具
   // win.webContents.openDevTools()
