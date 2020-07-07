@@ -20,7 +20,7 @@
     "run-electron": "^1.0.0"
   },
   "dependencies": {
-    "electron": "^5.0.2",
+    "electron": "^9.1.0",
     "express": "^4.17.1"
   }
 }
